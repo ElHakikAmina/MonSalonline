@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.cdnfonts.com/css/delicia');
+
+  @import url('https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@400;500;700&family=Lato&family=Poppins:wght@300;400;500&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,700;1,400;1,600&display=swap');
+
+.delicia{
+    font-family: 'delicia', sans-serif;
+                                                
+}
+.lato{
+    font-family: 'Kaisei Tokumin', serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Roboto', sans-serif;
+font-family: 'Source Sans Pro', sans-serif;
+}
+.width300px
+{
+    width:300px;
+}
