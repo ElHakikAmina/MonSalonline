@@ -1,48 +1,52 @@
 <template>
-  <div>
+  <div  class="bg-slate-200 py-7 m-auto w-5/6 ">
     <!-- begin : popup for update reservation -->
-    <div v-if="popupUpdate">
-      <div class="form-group">
-        <label for="nom">Date*</label>
+    <div  v-if="popupUpdate">
+      <div class="text-center">
+        <label for="nom">Date*</label> <br>
         <input
+        class="h-10 mb-5 rounded  border w-52"
           v-model="jourUpdate"
           @change="chekCreneau()"
           type="date"
-          class="form-control"
           required
         />
       </div>
 
-      <div class="form-group">
-        <label for="prenom">Horaire*</label>
-        <select class="form-control" required v-model="timeUpdate">
+      <div class="text-center">
+        <label for="prenom">Horaire*</label> <br>
+        <select class="h-10 mb-5 rounded  border w-52"
+         required v-model="timeUpdate">
           <option v-for="(stoke, index) in stokes" :value="stoke" :key="index">
             {{ stoke.time_on }} To {{ index }} {{ stoke.time_out }}
           </option>
         </select>
       </div>
-      <button type="button" @click="update()" class="submit btn btn-primary">
+      <div class="text-center">
+        <button type="button" @click="update()" class="mb-10 mt-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Modifier
       </button>
+      </div>
+      
     </div>
     <!-- end : popup for update reservation -->
-
-    <div class="container">
-      <div class="row my-4">
-        <div class="col-md-12 mx-auto">
+    <div class="lato  text-center mb-5 text-2xl font-bold">Vos Rendez vous</div>
+    <div class="">
+      <div class="">
+        <div class="">
           <!-- to show alert -->
           <div class="card">
             <div class="card-body bg-light">
               <!-- the username and logout after click on it -->
-              <a
+              <!-- <a
                 href="<?php echo BASE_URL;?>logout"
                 title="DÃ©connexion"
                 class="text-slate-900"
               >
                 <i class="fas fa-user mr-20"> </i>
-              </a>
+              </a> -->
 
-              <table class="table table-hover">
+              <table class="m-auto">
                 <thead>
                   <tr>
                     <th scope="col">Date</th>
@@ -62,7 +66,7 @@
 
                       <button
                         @click="edit(table)"
-                        class="btn btn-sm btn-warning"
+                        class="my-5 mx-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       >
                         Modifier
                         <i class="fa fa-edit"></i>
@@ -70,7 +74,7 @@
 
                       <button
                         @click="deleteReservation(table.id_reservation)"
-                        class="btn btn-sm btn-danger"
+                        class="my-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       >
                         Suppression
                       </button>

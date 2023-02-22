@@ -1,37 +1,35 @@
 <script setup>
 //
-    import {ref} from 'vue';
-    import flatPickr from 'vue-flatpickr-component';
-    import 'flatpickr/dist/flatpickr.css';
+    // import {ref} from 'vue';
+    // import flatPickr from 'vue-flatpickr-component';
+    // import 'flatpickr/dist/flatpickr.css';
 
-    const date = ref(null);
+    // const date = ref(null);
     //
 
    
 </script>
 
 <template>
-    <!-- Selectioner une date : 
-    <flat-pickr class="border rounded" v-model="date"/>
-    {{ date }} -->
-    <br><br><br><br><br><br><br><br>
-    <form @submit.prevent="inserer()">
-              <div class="form-group">
-                <label for="nom">Date*</label>
+  <div class="bg-slate-200 py-7 m-auto w-5/6 ">
+    <div class="lato  text-center mb-5 text-2xl font-bold">Checkez la disponibilité des horaires et prenez votre rendevez maintenant!</div>
+    <div class="">
+      <form @submit.prevent="inserer()">
+              <div class="text-center">
+                <label for="nom" class="lato font-bold">Choisissez une Date*</label> <br>
                 <input
                   v-model="jour"
                   @change="chekCreneau()"
                   type="date"
-                  class="form-control"
+                  class="h-10 my-5 rounded  border w-52"
                   required
                 />
               </div>
-
-              
-
-              <div class="form-group">
-                <label for="prenom">Horaire*</label>
-                <select class="form-control" required v-model="id">
+              <br/>
+              <div class="text-center">
+                <label for="prenom" class="lato font-bold">Horaire*</label> <br>
+                <select class="h-10 my-5 rounded  border w-52"
+                 required v-model="id">
                   <option
                     v-for="(stoke, index) in stokes"
                     :value="stoke"
@@ -41,10 +39,18 @@
                   >
                 </select>
               </div>
-              <button class=" submit btn btn-primary">
+              <div class="text-center">
+                <button class=" my-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Reserver
               </button>
+              </div>
+              
             </form>
+    </div>
+    
+  </div>
+    
+    
 </template>
 <script>
  export default {
