@@ -58,18 +58,33 @@
       id: undefined,
       id_reservation: undefined,
       toDashboard: false,
+      DayName:"",
       rp: "",
     };
   },
   methods: {
+     //-------------DayName--------------------------
+     getDayName(dateStr, locale)
+{
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });        
+},
+
+  //---------------------------------------------
     async chekCreneau() {
     //   console.log(sessionStorage.getItem("pageAjouter"));
     //   console.log(sessionStorage.getItem("pageUpdate"));
-    //   console.log(12);
+       //-------------DayName--------------------------
+    
+     this.DayName = this.getDayName(this.jour, "en-GB");
+    //---------------------------------------------
+    
       const data = {
         jour: this.jour,
+        DayName:this.DayName,
       };
       console.log(data.jour);
+      console.log(this.DayName);
       var res = await fetch(
         "http://localhost/monsalonline/ApiCrudsReservation/recupererCreneau",
         {

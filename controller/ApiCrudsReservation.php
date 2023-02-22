@@ -20,6 +20,7 @@ class ApiCrudsReservation
         $data = json_decode(file_get_contents("php://input"));
 
         $requets->jour = $data->jour;
+        $requets->DayName = $data->DayName;
 
         // recuperer les creneau disponibles
 

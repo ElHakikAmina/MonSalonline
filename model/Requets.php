@@ -13,6 +13,7 @@ class Requets
     public $id_cr;
     public $id_reservation;
     public $note;
+    public $DayName;
 
 
     public function __construct($db)
@@ -94,7 +95,19 @@ class Requets
     {
 
         $jour = $this->jour;
-        $query = " SELECT *FROM créneau WHERE id_cr NOT IN(SELECT id_cr FROM reservation WHERE jour='$jour')";
+        $DayName =$this->DayName;
+        if($DayName=="Sunday"){
+            $query = " SELECT *FROM créneau WHERE dimanche=1 and id_cr NOT IN(SELECT id_cr FROM reservation WHERE jour='$jour')";
+
+        }
+        elseif($DayName=="Friday"){
+            $query = " SELECT *FROM créneau WHERE vendredi=1 and id_cr NOT IN(SELECT id_cr FROM reservation WHERE jour='$jour')";
+
+        }
+        else{
+            $query = " SELECT *FROM créneau WHERE restesemaine=1 and id_cr NOT IN(SELECT id_cr FROM reservation WHERE jour='$jour')";
+
+        }
 
         $req = $this->conn->prepare($query);
         $req->execute();
