@@ -37,7 +37,7 @@
               <a
                 href="<?php echo BASE_URL;?>logout"
                 title="DÃ©connexion"
-                class="btn btn-link mr-2 mb-2"
+                class="text-slate-900"
               >
                 <i class="fas fa-user mr-20"> </i>
               </a>
