@@ -1,7 +1,7 @@
 
 <template>
-          <span v-html="alert_msg"></span>
-        <span v-html="alert_ref"></span>
+          <div v-html="alert_msg" class="lato  text-center mb-  1 text-green-700 text-2xl font-bold"></div>
+        <span class="lato  text-center  text-xl font-bold" v-html="alert_ref"></span>
     <div class="flex flex-row border p-5 rounded mx-5 mt-20">
         <div class="hidden md:block w-2/4">
             <img src="../assets/barbier2.jpg" class="w-full" alt="">

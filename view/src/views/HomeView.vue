@@ -30,7 +30,7 @@
     </div>
   </div>
   <!--  -->
-  <div class="flex flex-col md:flex-row w-11/12 mt-20 mx-auto">
+  <div class="flex flex-col md:flex-row w-11/12 mt-20 mb-12 mx-auto">
     <div class=" w-full md:w-1/5 mr-5">
       <img src="../assets/barbier1.jpg" class="mx-auto" style="width:;">
     </div>
@@ -40,6 +40,24 @@
 
       MONSALONLINE Maroc est un espace luxueux dédié à l’homme  pour un service de qualité et de détente unique, un lieu ou le plaisir et la relaxation promettent d’accompagner un résultat à toute épreuve.
       Nous sommes plus que barbier à Marrakech, nous proposons à nos clients différentes prestations de : Coiffure, Barbe, Soins lissage, Soins du Visage, Pédicure, Manicure, Cupping  ( ventouses ) Hijama tout y est pour vous Messieurs.
+    </div>
+  </div>
+  <!--  -->
+  <div class="flex flex-col md:flex-row justify-between text-center md:mx-7">
+    <div class="my-5">
+      <img src="../assets/likeIcon.png"  class="mx-auto w-40" alt="">
+      <br>
+      <span class="font-bold text-2xl  lato">Votre Satisfaction</span>
+    </div>
+    <div class="my-5">
+      <img src="../assets/supportIcone.png" class="mx-auto w-40" alt="">
+      <br>
+      <span class="font-bold text-2xl  lato">Support 7/7</span>
+    </div>
+    <div class="my-5">
+      <img src="../assets/qualityIcone.png" class="mx-auto w-40" alt="">
+      <br>
+      <span class="font-bold text-2xl  lato">Qualité</span>
     </div>
   </div>
   <!--  -->
@@ -55,7 +73,7 @@
     </div>
   </div>
   <!--  -->
-  <div class="flex flex-row flex-wrap justify-around mt-20">
+  <div class="flex flex-row flex-wrap justify-around  mt-20">
     <div class="mx-5 border rounded bg-slate-100 px-5 py-5 mt-5 width300px text-center lato text-zinc-600">
       <span class="font-bold text-2xl text-zinc-600 lato">Coin Coiffure </span>
       <br> <br>
@@ -86,6 +104,27 @@
       <span class="font-bold text-2xl text-zinc-600 lato">Soins Barbe</span>
       <br> <br>
       Votre barbier de Marrakech vous procure des soins pour entretenir et sublimer votre barbe. Comme les cheveux, votre barbe mérite qu'on s'occupe d'elle.
+    </div>
+  </div>
+  <div>
+    <video width="" class="m-auto my-20 w-3/5  md:h-96 " controls>
+    <source src="../assets/barber.mp4" type="video/mp4">
+  
+    Your browser does not support HTML video.
+    </video>
+  </div>
+  <div class="w-4/5 md:w-full m-auto flex flex-col md:flex-row ">
+    <div class="w-full  md:w-3/6  md:px-10">
+      <div class="lato  text-center mb-5 text-2xl font-bold">Contactez nous!</div>
+      <div class="text-center">
+        <input type="text" v-model="nom" placeholder="Nom complet" class="h-10 my-5 rounded w-full border" > <br>
+                <input type="text" v-model="prenom" placeholder="Email" class="h-10 my-5 rounded border w-full"> <br>
+                <textarea class=" my-5 rounded border w-full" placeholder="Votrs message ..." cols="30" rows="6"></textarea> <br>
+                <input type="submit" value="Envoyer" class=" my-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      </div>
+    </div>
+    <div class="w-full md:w-3/6 flex items-center  ">
+      <iframe class="w-full md:w-4/5  mx-auto  h-80" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27173.392340800896!2d-8.04095176984479!3d31.642773959214594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdafef93f39ec5e5%3A0xb3a010e318f35dcf!2sInfinity%20Barber%20Marrakech!5e0!3m2!1sfr!2sma!4v1677331815043!5m2!1sfr!2sma"   style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </template>
