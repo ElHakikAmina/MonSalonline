@@ -6,9 +6,10 @@
 
     // const date = ref(null);
     //
-
+   
    
 </script>
+
 
 <template>
   <div class="bg-slate-200 py-7 m-auto w-5/6 ">
@@ -54,6 +55,13 @@
 </template>
 <script>
  export default {
+  mounted() {
+      if(!sessionStorage.getItem("reference"))
+      window.location = "/";
+      
+    
+  },
+ 
   name: "AjoutReservation",
   data() {
     return {
@@ -75,7 +83,11 @@
     var date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: 'long' });        
 },
-
+checkAuth()
+{
+  if(sessionStorage.getItem("reference")) alert("reference");
+  console.log("fffffffff");
+},
   //---------------------------------------------
     async chekCreneau() {
     //   console.log(sessionStorage.getItem("pageAjouter"));

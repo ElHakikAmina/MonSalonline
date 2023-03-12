@@ -13,6 +13,12 @@
 
 <script>
 export default {
+  mounted() {
+      if(sessionStorage.getItem("reference"))
+      window.location = "/";
+      
+    
+  },
   name: "Login",
   data() {
     return {
@@ -40,7 +46,9 @@ export default {
           sessionStorage.setItem("reference", this.reference);
 
           this.isAuth = true;
-          this.redirection();
+          //this.redirection();
+          window.location = "/rdv";
+
         } else {
           this.isAuth = false;
         }
@@ -49,8 +57,10 @@ export default {
     redirection() {
       if (this.isAuth == true) {
         this.$router.push({ path: "/rdv" });
+        
       } else {
         this.$router.push({ path: "/connexion" });
+        
       }
     },
   },

@@ -25,7 +25,8 @@ data() {
         logout(){
             sessionStorage.removeItem('reference');
             //this.$router.push({ path: "/home" });
-            location.reload();
+            //location.reload();
+            window.location = "/";
         },
     },
   };

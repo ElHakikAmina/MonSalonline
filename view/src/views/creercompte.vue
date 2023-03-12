@@ -30,6 +30,12 @@
 
 <script>
 export default {
+  mounted() {
+      if(sessionStorage.getItem("reference"))
+      window.location = "/";
+      
+    
+  },
   name: "SignupForm",
 
   data() {
