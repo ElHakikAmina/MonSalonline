@@ -5,6 +5,80 @@ class ApiCrudsReservation
 {
 
 
+    function getAllRDV()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-type: application/json');
+        header('Access-control-Allow-Methods:GET');
+
+
+        $obj = new Database;
+        $conn = $obj->connect();
+
+        $requets = new Requets($conn);
+        // inserte dand la table de client
+        $data = json_decode(file_get_contents("php://input"));
+
+        $requets->jour = $data->jour;
+
+
+        // recuperer les creneau disponibles
+
+        $result = $requets->getAllRDV();
+
+        // recuperer le nombres des lignes dans la tables creneau
+
+        /* $allrdv = array();
+        // stoker les id creneau disponible dans idCreneau
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+
+            $creneauDisponibles[$i]['time_on'] = $row['time_on'];
+            $creneauDisponibles[$i]['time_out'] = $row['time_out'];
+            $i++;
+        } */
+        // recupere les creneau disponibles
+        echo json_encode($result);
+    }
+
+    function recupererAvailableCreneau()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-type: application/json');
+        header('Access-control-Allow-Methods:GET');
+
+
+        $obj = new Database;
+        $conn = $obj->connect();
+
+        $requets = new Requets($conn);
+        // inserte dand la table de client
+        $data = json_decode(file_get_contents("php://input"));
+
+        $requets->jour = $data->jour;
+        $requets->DayName = $data->DayName;
+
+        // recuperer les creneau disponibles
+
+        $result = $requets->checkAvailableCreneau();
+
+        // recuperer le nombres des lignes dans la tables creneau
+
+        $creneauDisponibles = array();
+        // stoker les id creneau disponible dans idCreneau
+
+        $i = 0;
+        while ($row = $result->fetch()) {
+
+            $creneauDisponibles[$i]['time_on'] = $row['time_on'];
+            $creneauDisponibles[$i]['time_out'] = $row['time_out'];
+            $i++;
+        }
+        // recupere les creneau disponibles
+        echo json_encode($creneauDisponibles);
+    }
+
     function recupererCreneau()
     {
         header('Access-Control-Allow-Origin: *');

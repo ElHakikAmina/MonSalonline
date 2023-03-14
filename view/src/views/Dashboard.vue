@@ -7,16 +7,17 @@
         <input
         class="h-10 mb-5 rounded  border w-52"
           v-model="jourUpdate"
-          @change="chekCreneau()"
+          @change="newfunction()"
           type="date"
           required
         />
       </div>
-
+     
       <div class="text-center">
         <label for="prenom">Horaire*</label> <br>
         <select class="h-10 mb-5 rounded  border w-52"
          required v-model="timeUpdate">
+         
           <option v-for="(stoke, index) in stokes" :value="stoke" :key="index">
             {{ stoke.time_on }} To {{ index }} {{ stoke.time_out }}
           </option>
@@ -24,11 +25,12 @@
       </div>
       <div class="text-center">
         <button type="button" @click="update()" class="mb-10 mt-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Modifier
+        Sauvegarder
       </button>
       </div>
       
     </div>
+
     <!-- end : popup for update reservation -->
     <div class="lato  text-center mb-5 text-2xl font-bold">Vos Rendez vous</div>
     <div class="">
@@ -90,7 +92,8 @@
   </div>
 </template>
 
-<script>
+<script >
+import { Modal } from 'flowbite-vue'
 export default {
   mounted() {
       if(!sessionStorage.getItem("reference"))
@@ -116,6 +119,12 @@ export default {
     };
   },
   methods: {
+    getDayName(dateStr, locale)
+    {
+      console.log(dateStr)
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });        
+    },
     deleteReservation(id) {
       console.log(id);
       const data = {
@@ -171,23 +180,27 @@ export default {
       this.pageUpdate = false;
       this.redirection();
     },
-
+   newfunction(){
+    this.chekCreneau()
+   },
     edit(table) {
-      console.log(table);
+      this.jourUpdate =table.jour
+      this.newfunction()
+      
       this.timeUpdate = {
-        time_out: table.time_out,
         time_on: table.time_on,
+        time_out: table.time_out,
       };
       this.stokes=[{
-        time_out: table.time_out,
         time_on: table.time_on,
+        time_out: table.time_out,
       }]
 
       this.jourUpdate = table.jour;
       this.popupUpdate = true;
       this.id_reservation = table.id_reservation;
-
-      console.log(this.timeUpdate);
+ 
+      //console.log(this.timeUpdate);
     },
     redirection() {
       if (this.pageUpdate == true) {
@@ -205,11 +218,13 @@ export default {
 
     async chekCreneau() {
       const data = {
-        jour: this.jour,
+        jour: this.jourUpdate,
+        DayName: this.getDayName(this.jourUpdate, "en-GB"),
       };
-      console.log(data.jour);
+      console.log(data)
+     
       var res = await fetch(
-        "http://localhost/monsalonline/ApiCrudsReservation/recupererCreneau",
+        "http://localhost/monsalonline/ApiCrudsReservation/recupererAvailableCreneau",
         {
           method: "POST",
           header: "Content-type: application/json",
@@ -220,7 +235,7 @@ export default {
 
       if (res.status === 200) {
         this.stokes = await res.json();
-        console.log(this.stokes);
+       // console.log(this.stokes);
       }
     },
 

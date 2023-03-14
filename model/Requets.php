@@ -91,7 +91,7 @@ class Requets
 
     // api recuperer creneau disponible
 
-    public function checkCreneau()
+    public function checkAvailableCreneau()
     {
 
         $jour = $this->jour;
@@ -113,6 +113,44 @@ class Requets
         $req->execute();
 
         return  $req;
+    }
+
+    public function checkCreneau()
+    {
+
+        $jour = $this->jour;
+        $DayName =$this->DayName;
+        if($DayName=="Sunday"){
+            $query = " SELECT *FROM créneau WHERE dimanche=1 ";
+
+        }
+        elseif($DayName=="Friday"){
+            $query = " SELECT *FROM créneau WHERE vendredi=1 ";
+
+        }
+        else{
+            $query = " SELECT *FROM créneau WHERE restesemaine=1 ";
+
+        }
+
+        $req = $this->conn->prepare($query);
+        $req->execute();
+
+        return  $req;
+    }
+   
+    public function getAllRDV()
+    {
+
+        $jour = $this->jour;
+        $DayName =$this->DayName;
+        
+            $query = "SELECT time_on, time_out FROM `créneau` JOIN reservation ON reservation.id_cr = `créneau`.id_cr WHERE reservation.jour = '$this->jour';";
+
+        $req = $this->conn->prepare($query);
+        $req->execute();
+
+        return  $req->fetchAll();
     }
 
 

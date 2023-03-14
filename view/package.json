@@ -9,6 +9,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "flowbite": "^1.6.4",
+    "flowbite-vue": "^0.0.10",
     "vue": "^3.2.45",
     "vue-flatpickr-component": "^11.0.2",
     "vue-router": "^4.1.6"

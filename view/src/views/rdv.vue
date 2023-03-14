@@ -1,4 +1,5 @@
 <script setup>
+import day from '../components/day.vue'
 //
     // import {ref} from 'vue';
     // import flatPickr from 'vue-flatpickr-component';
@@ -12,10 +13,28 @@
 
 
 <template>
+  
   <div class="bg-slate-200 py-7 m-auto w-5/6 ">
+    
+    <div class="lato  text-center mb-5 text-2xl font-bold">Checkez la disponibilité des horaires et prenez votre rendevez maintenant!</div>
+    <div >
+      <day v-for="d in currentMonth" :d="d" />
+
+      <!-- <div class=" border py-1 m-2" v-for="d in currentMonth">
+        {{ d.dayName + "   "+d.Daydate }}
+        
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          v-for="(stoke, index) in stokes" :value="stoke" :key="index" @click="inserer()">
+                      {{ stoke.time_on }} To {{ stoke.time_out }}
+          </button>
+      </div> -->
+    </div>
+  </div>
+  <!-- <div class="bg-slate-200 py-7 m-auto w-5/6 ">
     <div class="lato  text-center mb-5 text-2xl font-bold">Checkez la disponibilité des horaires et prenez votre rendevez maintenant!</div>
     <div class="">
       <form @submit.prevent="inserer()">
+        
               <div class="text-center">
                 <label for="nom" class="lato font-bold">Choisissez une Date*</label> <br>
                 <input
@@ -28,7 +47,22 @@
               </div>
               <br/>
               <div class="text-center">
-                <label for="prenom" class="lato font-bold">Horaire*</label> <br>
+                <div>
+                     <button @click="inserer()"> 
+                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      
+                      v-for="(stoke, index) in stokes"
+                    :value="stoke"
+                    :key="index"
+                    @click="inserer()"
+                      >
+                      {{ stoke.time_on }} To 
+                    {{ stoke.time_out }}
+                    </button> <br>
+                    
+                  </div> 
+                 <label for="prenom" class="lato font-bold">Horaire*</label> <br>
+
                 <select class="h-10 my-5 rounded  border w-52"
                  required v-model="id">
                   <option
@@ -38,8 +72,8 @@
                     >{{ stoke.time_on }} To {{ index }}
                     {{ stoke.time_out }}</option
                   >
-                </select>
-              </div>
+                </select> -->
+              <!-- </div>
               <div class="text-center">
                 <button class=" my-5 bg-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Reserver
@@ -47,25 +81,22 @@
               </div>
               
             </form>
-    </div>
+    </div> -->
     
-  </div>
+  <!-- </div> -->
     
     
 </template>
 <script>
  export default {
-  mounted() {
-      if(!sessionStorage.getItem("reference"))
-      window.location = "/";
-      
-    
-  },
+ 
  
   name: "AjoutReservation",
   data() {
     return {
+      dateToday:"",
       stokes: {},
+      currentMonth:[],
       time_on: "",
       time_out: "",
       jour: "",
@@ -76,13 +107,41 @@
       rp: "",
     };
   },
+  mounted() {
+      if(!sessionStorage.getItem("reference"))
+      window.location = "/";
+      let testdate = new Date()
+      //console.log(testdate)
+      for (let i=0;i<30;i++)
+      {
+        let dateToday=new Date();
+        
+        var day = dateToday.setDate(dateToday.getDate() + i);
+        var Daydate= dateToday.getFullYear() +"-"+ (dateToday.getMonth() + 1 )+"-"+dateToday.getDate();
+        //console.log(Daydate)
+        this.jour=Daydate;
+        //console.log("this.jour");
+        //console.log(this.jour);
+        var DayInfo ={
+          "dayName" : this.getDayName(Daydate, "en-GB"),
+          "Daydate" :  Daydate
+        }
+        //console.log(DayInfo.dayName)
+        this.currentMonth.push(DayInfo);
+        
+      }
+      
+      
+    
+  },
   methods: {
+    
      //-------------DayName--------------------------
      getDayName(dateStr, locale)
-{
+    {
     var date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: 'long' });        
-},
+    },
 checkAuth()
 {
   if(sessionStorage.getItem("reference")) alert("reference");
@@ -134,7 +193,6 @@ checkAuth()
           {
             method: "POST",
             header: "Content-type: application/json",
-
             body: JSON.stringify(data),
           }
         );
