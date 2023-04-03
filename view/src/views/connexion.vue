@@ -45,6 +45,8 @@ export default {
         if (result.reference_existe == "true") {
           sessionStorage.setItem("reference", this.reference);
 
+          // console.log(data);
+
           this.isAuth = true;
           //this.redirection();
           window.location = "/rdv";

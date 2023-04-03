@@ -49,8 +49,6 @@ class ApiUser
 
     function inserteReservation()
     {
-
-
         header('Access-Control-Allow-Origin: *');
         header('Content-type: application/json');
         header('Access-control-Allow-Methods:POST');
@@ -73,20 +71,27 @@ class ApiUser
 
         $result = $requets->recupererIdCreneau();
         $requets->id_cr = $result['id_cr'];
-
+        // if($requets->oneHourPerDay($requets->id_user,$requets->jour)!=0)
+        // {
+        //     header("location:usgd");
+        // }
         if ($requets->insertReservation()) {
             echo json_encode(
                 array(
                     'message' => 'true'
                 )
             );
+
         } else {
+            //return false;
             echo json_encode(
                 array(
                     'message' => 'false'
                 )
             );
         }
+        // $m=array(); $m['message']="erreeuuuur";
+        // echo json_encode($m);
     }
 
     function checkReference()

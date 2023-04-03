@@ -80,9 +80,6 @@ export default {
   
       this.chekCreneau()
       this.getAllRDV()
-      
-    
-
   },
 
   data() {
@@ -99,7 +96,5 @@ export default {
   <div>
     <h1>{{ d.dayName + " " + d.Daydate }}</h1>
     <Hour v-if="apiCallsComplete" v-for="stoke in this.stokes" :hour="stoke" :rdv="this.rdv" :day="this.d.Daydate" />
-    <!-- <Hour v-for="rdv in this.rdv" :hour="rdv" :reserved="true" /> -->
-
   </div>
 </template>

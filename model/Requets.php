@@ -21,8 +21,19 @@ class Requets
         $this->conn = $db;
     }
 
-    // API creat client
+    
+    // public function oneHourPerDay($id_user,$date)
+    // {
+    //     $sql = 'SELECT COUNT(*) FROM reservation WHERE jour=:date_reservation and id_user=:user_id ';
+    //     $stmt = $pdo->prepare($sql);
+    //     $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    //     $stmt->bindParam(':date_reservation', $date, PDO::PARAM_STR);
+    //     $stmt->execute();
+    //     $count = $stmt->fetchColumn();
 
+    //     return $count;
+    // }
+    // API creat client
     public function create()
     {
 
@@ -172,7 +183,18 @@ class Requets
 
     public function insertReservation()
     {
+        // Check if the user has already reserved a slot on the same day
+    $query = "SELECT COUNT(*) as count FROM reservation WHERE id_user=:id_user AND jour=:jour";
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(':id_user', $this->id_user);
+    $stmt->bindParam(':jour', $this->jour);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    if ($result['count'] > 0) {
+        // User has already reserved a slot on the same day
+        return false;
+    }
         $query = "INSERT INTO reservation SET  id_user=:id_user,id_cr=:id_cr,jour=:jour";
         $strm = $this->conn->prepare($query);
 
